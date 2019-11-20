@@ -3,9 +3,9 @@ var loginFile = require("./login.js");
 module.exports = {
 
     route: function (req, res) {
-        var requestURl = req.params[0];
-        if (req.body.csrf == undefined) {
-            switch (requestURl) {
+        var requestURL = req.params[0];
+        if (!req.body.csrf) {
+            switch (requestURL) {
                 case "/api/createaccount":
                     createUserFile.verifyInput(req.body, res);
                     break;

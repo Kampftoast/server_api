@@ -13,14 +13,13 @@ module.exports = {
         }
     },
     getUserData: function (userdata, res) {
-        var username = userdata.username;
-        var iteration = 0;
-        var userItem;
-        var me = this;
+        const username = userdata.username;
+        let userItem;
+        let me = this;
 
 
         console.log("getting username..");
-        var params = {
+        const params = {
             TableName: "User",
             Select: "ALL_ATTRIBUTES",
             KeyConditionExpression: "#username = :usernameInput",
@@ -35,7 +34,7 @@ module.exports = {
         docClient.query(params, function (err, data) {
             if (err) {
                 console.log(err)
-                res.status(500).send("Internal Database Error.Please contact us").end();
+                res.status(500).send("Internal Database Error. Please contact us").end();
             } else {
                 data.Items.forEach(function (item) {
                     if (item.username == username) {

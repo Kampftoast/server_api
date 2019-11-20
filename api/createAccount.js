@@ -13,12 +13,11 @@ module.exports = {
         }
     },
     checkUserAlreadyExisting: function (input, res) {
-        var username = input.username;
-        var accountExist = false;
-        var me = this;
-        var iteration = 0;
+        const username = input.username;
+        let accountExist = false;
+        let me = this;
         console.log("checking user name alredy exist..");
-        var params = {
+        const params = {
             TableName: "User",
             ProjectionExpression: "#username",
             KeyConditionExpression: "#username = :usernameInput",
@@ -34,12 +33,11 @@ module.exports = {
 
             if (err) {
                 console.log(err)
-                res.status(500).send("Internal Database Error.Please contact us").end();
+                res.status(500).send("Internal Database Error. Please contact us").end();
             } else {
                 data.Items.forEach(function (item) {
                     if (item.username == username) {
                         accountExist = true;
-                        iteration++;
                         res.status(500).send("Username already exist").end();
                     }
                 });
@@ -53,7 +51,7 @@ module.exports = {
     createUserAccount: function (input, hash, res) {
         console.log("create new account");
 
-        var params = {
+        const params = {
             TableName: "User",
             Item: {
                 "username": input.username,

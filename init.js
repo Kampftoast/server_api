@@ -7,7 +7,7 @@ var bodyParser = require("body-parser");
 //accept JSON
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
-//test comment
+
 server.post("*", function (req, res) {
     apiRouter.route(req, res);
 }),
